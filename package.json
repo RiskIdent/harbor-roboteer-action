@@ -1,0 +1,22 @@
+{
+  "name": "harbor-roboteer-action",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "keywords": [],
+  "scripts": {
+    "build": "rolldown src/index.ts -d dist -f cjs --no-sourcemap",
+    "format": "biome format --write",
+    "format-check": "biome format",
+    "all": "npm run format && npm run build"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.0",
+    "@actions/http-client": "^4.0.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.8",
+    "@types/bun": "1.4.4",
+    "@types/node": "26.6.6",
+    "rolldown": "1.3.3"
+  }
+}
