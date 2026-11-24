@@ -18,7 +18,7 @@ jobs:
 
     steps:
       - name: Login to Harbor
-        uses: RiskIdent/harbor-roboteer-action@v1.0.0
+        uses: RiskIdent/harbor-roboteer-action@v1
         with:
           harbor-url: https://harbor.example.com
           setup-docker-auth: true
