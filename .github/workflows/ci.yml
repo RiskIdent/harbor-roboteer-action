@@ -261,6 +261,8 @@ jobs:
 
       - name: Compare the expected and actual package directories
         run: |
+          # Ignore changes on mise.lock
+          git checkout -- mise.lock
           if ! git diff --stat --color --exit-code; then
             echo "Detected uncommitted changes after the build. See the status below:"
             git diff --color
