@@ -1,0 +1,8 @@
+# NPM
+/package-lock.json
+node_modules/
+
+# rumdl: markdown linter
+# It already ignores itself via .rumdl_cache/.gitignore,
+# but then the directory is not marked as "ignored" in editors with Git integration
+.rumdl_cache/
