@@ -242,8 +242,30 @@ jobs:
             echo "$file was changed"
           done
 
-      - run: npm ci
-      - run: npm run docs:lint -- --format github-actions
+      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+        if: steps.changed-files.outputs.any_changed == 'true'
+        with:
+          install_args: bun
+          cache_key_prefix: mise-v1-bun
+
+      - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: |
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - run: bun ci
+      - run: mise run all
+
+      - name: Compare the expected and actual package directories
+        run: |
+          if ! git diff --stat --color --exit-code; then
+            echo "Detected uncommitted changes after the build. See the status below:"
+            git diff --color
+            exit 1
+          fi
 
   # ----------------- ( job separator ) -----------------
 
