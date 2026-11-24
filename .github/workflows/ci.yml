@@ -59,7 +59,7 @@ jobs:
             echo "$file was changed"
           done
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           install_args: actionlint
@@ -106,7 +106,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         with:
           install_args: gitlab:greut/eclint
           cache_key_prefix: mise-v1-eclint
@@ -162,7 +162,7 @@ jobs:
             echo "$file was changed"
           done
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           install_args: rumdl
@@ -193,7 +193,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         with:
           install_args: typos
           cache_key_prefix: mise-v1-typos
@@ -242,7 +242,7 @@ jobs:
             echo "$file was changed"
           done
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           install_args: bun
@@ -305,7 +305,7 @@ jobs:
             echo "$file was changed"
           done
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           install: false
@@ -355,7 +355,7 @@ jobs:
             echo "$file was changed"
           done
 
-      - uses: jdx/mise-action@d5574b52816a478f9d4e6529a3f6ff17a8a36785 # v5.2.8
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         if: steps.changed-files.outputs.any_changed == 'true'
         with:
           install_args: hk
