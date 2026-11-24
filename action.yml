@@ -1,0 +1,44 @@
+name: harbor-login-action
+description: Login to Harbor
+author: Platform team
+inputs:
+  harbor-url:
+    description: "Base URL of Harbor server. Example: https://harbor.example.com"
+    required: true
+
+  roboteer-url:
+    description: "Base URL of harbor-roboteer server. Defaults to same as harbor-url (assuming you run harbor-roboteer on the same host as Harbor, behind a reverse proxy)"
+    default: ""
+
+  robot-name:
+    description: "Harbor robot account base name. Defaults to OIDC token's `sub` claim. Will get truncated and normalized by harbor-roboteer. E.g with robot-name: 'Hello World!', then final name will be 'robot$hello-world-########' (where ######## is a random suffix)"
+    default: ""
+
+  setup-docker-auth:
+    description: Add credentials to ~/.docker/config.json
+    default: "false"
+
+  setup-helm-auth:
+    description: Add credentials to ~/.config/helm/registry/config.json
+    default: "false"
+
+  audience:
+    description: JWT audience. Must match the 'harbor-roboteer serve --oidc-audience=...' flag value.
+    default: harbor-roboteer
+
+outputs:
+  username:
+    description: Robot account username
+  password:
+    description: Robot account password/secret.
+  delete-token:
+    description: Delete token for cleaning up the robot account
+  robot-id:
+    description: Robot ID
+  auth:
+    description: Basic auth with username + ':' + password.
+
+runs:
+  using: node24
+  main: dist/index.js
+  post: dist/index.js
