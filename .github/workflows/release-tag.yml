@@ -1,0 +1,33 @@
+name: Release tag
+
+on:
+  release:
+    types:
+      - released # A release was published, or a pre-release was changed to a release.
+
+permissions:
+  contents: write
+
+jobs:
+  add-tags:
+    name: add tags
+    runs-on:
+      group: ephemeral_runners
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # Fetch full history for all branches and tags
+          persist-credentials: true
+
+      - name: Update tags
+        env:
+          # https://docs.github.com/en/webhooks-and-events/webhooks/webhook-events-and-payloads?actionType=released#release
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
+          .github/update-tags.sh
+
+          # Using --force to update existing tags
+          git push --tags --force
