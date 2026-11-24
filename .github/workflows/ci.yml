@@ -249,6 +249,7 @@ jobs:
           cache_key_prefix: mise-v1-bun
 
       - uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: steps.changed-files.outputs.any_changed == 'true'
         with:
           path: |
             ~/.bun/install/cache
@@ -257,9 +258,13 @@ jobs:
             ${{ runner.os }}-bun-
 
       - run: bun ci
+        if: steps.changed-files.outputs.any_changed == 'true'
+
       - run: bun run all
+        if: steps.changed-files.outputs.any_changed == 'true'
 
       - name: Compare the expected and actual package directories
+        if: steps.changed-files.outputs.any_changed == 'true'
         run: |
           # Ignore changes on mise.lock
           git checkout -- mise.lock
