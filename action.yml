@@ -36,7 +36,7 @@ outputs:
   robot-id:
     description: Robot ID
   auth:
-    description: Basic auth with username + ':' + password.
+    description: Basic auth with base64-encoded username + ':' + password.
 
 runs:
   using: node24
