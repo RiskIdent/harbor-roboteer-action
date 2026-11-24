@@ -30,4 +30,6 @@ jobs:
           .github/update-tags.sh
 
           # Using --force to update existing tags
-          git push --tags --force
+          if [[ "$TAG_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            git push --force origin "refs/tags/${TAG_NAME%.*}" "refs/tags/${TAG_NAME%%.*}"
+          fi
