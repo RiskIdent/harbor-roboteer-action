@@ -21,6 +21,7 @@ jobs:
         uses: RiskIdent/harbor-roboteer-action@v1.0.0
         with:
           harbor-url: https://harbor.example.com
+          setup-docker-auth: true
 
       - name: Try pull image
         run: |
